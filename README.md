@@ -28,7 +28,7 @@ Cada camada depende apenas de contratos definidos em níveis superiores, permiti
 ## Pré-requisitos
 
 1. **Python 3.10+**
-2. **Firefox** instalado.
+2. **Firefox** instalado (caso esteja em um caminho não padrão, informe o executável pela variável de ambiente `FIREFOX_BINARY`).
 3. **Geckodriver** compatível com a versão do Firefox disponível no `PATH` do sistema. Consulte a [documentação oficial](https://firefox-source-docs.mozilla.org/testing/geckodriver/) para download.
 4. (Opcional) Ambiente virtual Python para isolar dependências.
 
