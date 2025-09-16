@@ -27,6 +27,7 @@ LOGGER = logging.getLogger(__name__)
 class AppConfiguration:
     storage_path: Path
     headless: bool = False
+    firefox_binary: Optional[Path] = None
 
 
 class AppDependencies:
@@ -38,8 +39,12 @@ class AppDependencies:
         self._config = config
 
         repository = JsonMacroRepository(config.storage_path)
-        recorder = SeleniumMacroRecorder(lambda: create_firefox_driver(headless=config.headless))
-        player = SeleniumMacroPlayer(lambda: create_firefox_driver(headless=config.headless))
+        recorder = SeleniumMacroRecorder(
+            lambda: create_firefox_driver(headless=config.headless, firefox_binary=config.firefox_binary)
+        )
+        player = SeleniumMacroPlayer(
+            lambda: create_firefox_driver(headless=config.headless, firefox_binary=config.firefox_binary)
+        )
 
         self.start_recording = StartMacroRecording(recorder)
         self.stop_recording = StopMacroRecording(recorder, repository)
